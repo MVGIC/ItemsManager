@@ -14,7 +14,6 @@ public class ProductManager {
 
     public void add(Product product) {
         repository.save(product);
-
     }
 
     public Product[] searchBy(String text) {
