@@ -34,7 +34,7 @@ public class ProductManagerTest {
         manager.add(fourth);
 
 
-        Product[] returned = new Product[]{third};
+        Product[] returned = new Product[]{first,second,third,fourth};
         doReturn(returned).when(repository).findAll();
 
         Product[] actual = manager.searchBy("Nokia");
@@ -43,9 +43,19 @@ public class ProductManagerTest {
 
         verify(repository).findAll();
     }
-}
 
-
+//        @Test
+//        public void shouldSearchBy() {
+//            ProductManager manager = new ProductManager();
+//            Book first = new Book(1, "Sherlock_Holmes", 150, "Arthur Conan Doyle");
+//            Book second = new Book(2, "Toilers of the Sea", 200, "Victor Hugo");
+//            Smartphone third = new Smartphone(3, "Nokia", 2000, "Finland");
+//            Smartphone fourth = new Smartphone(4, "Sony", 3000, "Japan");
+//            manager.add(first);
+//            manager.add(second);
+//            manager.add(third);
+//            manager.add(fourth);
+//
 //        manager.searchBy("Nokia");
 //
 //        Product[] actual = manager.searchBy("Nokia");
@@ -53,4 +63,4 @@ public class ProductManagerTest {
 //
 //        assertArrayEquals(expected, actual);
 //    }
-//}
+}
