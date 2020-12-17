@@ -39,7 +39,6 @@ public class ProductManager {
             if (book.getAuthor().equalsIgnoreCase(search)) {
                 return true;
             }
-            return false;
         }
 
         if (product instanceof Smartphone) {
@@ -50,8 +49,7 @@ public class ProductManager {
             if (smartphone.getProducer().equalsIgnoreCase(search)) {
                 return true;
             }
-            return false;
         }
-        return matches(product, search);
+        return false;
     }
 }

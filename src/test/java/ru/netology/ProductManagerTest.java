@@ -33,7 +33,6 @@ public class ProductManagerTest {
         manager.add(third);
         manager.add(fourth);
 
-
         Product[] returned = new Product[]{first, second, third, fourth};
         doReturn(returned).when(repository).findAll();
 
@@ -54,7 +53,6 @@ public class ProductManagerTest {
         manager.add(second);
         manager.add(third);
         manager.add(fourth);
-
 
         Product[] returned = new Product[]{first, second, third, fourth};
         doReturn(returned).when(repository).findAll();
@@ -86,6 +84,48 @@ public class ProductManagerTest {
 
         Product[] actual = manager.searchBy("Nikolai Vasilievich Gogol");
         Product[] expected = new Product[]{fifth, sixth};
+        assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
+    }
+
+    @Test
+    public void shouldSearchByProducer() {
+        Book first = new Book(1, "Sherlock_Holmes", 150, "Arthur Conan Doyle");
+        Book second = new Book(2, "Toilers of the Sea", 200, "Victor Hugo");
+        Smartphone third = new Smartphone(3, "Nokia", 2000, "Finland");
+        Smartphone fourth = new Smartphone(4, "Sony", 3000, "Japan");
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+
+        Product[] returned = new Product[]{first, second, third, fourth};
+        doReturn(returned).when(repository).findAll();
+
+        Product[] actual = manager.searchBy("Japan");
+        Product[] expected = new Product[]{fourth};
+        assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
+    }
+
+    @Test
+    public void shouldSearchByBookName() {
+        Book first = new Book(1, "Sherlock_Holmes", 150, "Arthur Conan Doyle");
+        Book second = new Book(2, "Toilers of the Sea", 200, "Victor Hugo");
+        Smartphone third = new Smartphone(3, "Nokia", 2000, "Finland");
+        Smartphone fourth = new Smartphone(4, "Sony", 3000, "Japan");
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+
+        Product[] returned = new Product[]{first, second, third, fourth};
+        doReturn(returned).when(repository).findAll();
+
+        Product[] actual = manager.searchBy("Toilers of the Sea");
+        Product[] expected = new Product[]{second};
         assertArrayEquals(expected, actual);
 
         verify(repository).findAll();
